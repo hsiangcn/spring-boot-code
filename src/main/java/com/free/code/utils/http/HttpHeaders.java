@@ -223,4 +223,14 @@ public final class HttpHeaders {
   public static final String X_USER_IP = "X-User-IP";
   /** The HTTP {@code X-XSS-Protection} header field name. */
   public static final String X_XSS_PROTECTION = "X-XSS-Protection";
+
+  public static final String CHARSET_UTF_8 = "UTF-8";
+
+  public static final String APPLICATION_JSON = "application/json";
+
+  public static final String HTTP = "http";
+
+  public static final String HTTPS = "https";
+
+  public static final String XML_HTTP_REQUEST = "XMLHttpRequest";
 }
