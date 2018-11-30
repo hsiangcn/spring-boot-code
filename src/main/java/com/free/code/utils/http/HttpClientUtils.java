@@ -82,8 +82,8 @@ public class HttpClientUtils {
 	 * @param param
 	 * @return
 	 */
-	public static String doPost(String url, String bodyStr) {
-		return HttpClientUtils.doPost(url, bodyStr, HttpHeaders.CHARSET_UTF_8);
+	public static String doPost(String url, String param) {
+		return HttpClientUtils.doPost(url, param, HttpHeaders.CHARSET_UTF_8);
 	}
 
 	/**
@@ -95,15 +95,15 @@ public class HttpClientUtils {
 	 * @auther: user
 	 * @date: 2018/11/28 11:38
 	 */
-	public static String doPost(String url, String bodyStr, String charset) {
+	public static String doPost(String url, String param, String charset) {
 		String result = null;
 		HttpPost httpPost = new HttpPost(url);
 		try {
-			if (StringUtils.isNotBlank(bodyStr)) {
+			if (StringUtils.isNotBlank(param)) {
 				checkCharset(charset);
 				//设置请求头
 				httpPost.setHeader(HttpHeaders.CONTENT_TYPE, HttpHeaders.APPLICATION_JSON);
-				httpPost.setEntity(new StringEntity(bodyStr));
+				httpPost.setEntity(new StringEntity(param));
 				result = executeRequest(httpPost, charset);
 				return result;
 			}
@@ -118,29 +118,29 @@ public class HttpClientUtils {
 	 * 	默认编码集为：UTF-8
 	 *
 	 * @param url
-	 * @param param
+	 * @param paramMap
 	 * @return
 	 */
-	public static String doPost(String url, Map<String, String> bodyMap) {
-		return doPost(url, bodyMap, HttpHeaders.CHARSET_UTF_8);
+	public static String doPost(String url, Map<String, String> paramMap) {
+		return doPost(url, paramMap, HttpHeaders.CHARSET_UTF_8);
 	}
 
 	/**
 	 * 	HTTP / HTTPS doPost 请求，传递map格式参数，
 	 * 	可指定编码集，若未指定编码集默认为：UTF-8
 	 * @param url
-	 * @param param
+	 * @param paramMap
 	 * @param charset
 	 * @return
 	 */
-	public static String doPost(String url, Map<String, String> bodyMap, String charset) {
+	public static String doPost(String url, Map<String, String> paramMap, String charset) {
 		HttpPost httpPost = new HttpPost(url);
 		String result = null;
 		try {
-			if (bodyMap != null){
+			if (paramMap != null){
 				checkCharset(charset);
 				List<NameValuePair> nvps = Arrays.asList();
-				for (Map.Entry<String, String> entry : bodyMap.entrySet()) {
+				for (Map.Entry<String, String> entry : paramMap.entrySet()) {
 					nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
 				}
 				UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nvps, charset);
@@ -189,8 +189,8 @@ public class HttpClientUtils {
 	 * @param param
 	 * @return
 	 */
-	public static String ajaxPost(String url, String bodyStr) {
-		return HttpClientUtils.ajaxPost(url, bodyStr, HttpHeaders.CHARSET_UTF_8);
+	public static String ajaxPost(String url, String param) {
+		return HttpClientUtils.ajaxPost(url, param, HttpHeaders.CHARSET_UTF_8);
 	}
 
 	/**
@@ -200,16 +200,16 @@ public class HttpClientUtils {
 	 * @auther: user
 	 * @date: 2018/11/28 11:38
 	 */
-	public static String ajaxPost(String url, String bodyStr, String charset) {
+	public static String ajaxPost(String url, String param, String charset) {
 		String result = null;
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setHeader(HttpHeaders.X_REQUESTED_WITH, HttpHeaders.XML_HTTP_REQUEST);
 		try {
-			if (StringUtils.isNotBlank(bodyStr)) {
+			if (StringUtils.isNotBlank(param)) {
 				checkCharset(charset);
 				//设置请求头
 				httpPost.setHeader(HttpHeaders.CONTENT_TYPE, HttpHeaders.APPLICATION_JSON);
-				httpPost.setEntity(new StringEntity(bodyStr));
+				httpPost.setEntity(new StringEntity(param));
 				result = executeRequest(httpPost, charset);
 				return result;
 			}
@@ -224,30 +224,30 @@ public class HttpClientUtils {
 	 * 	默认编码集为：UTF-8
 	 *
 	 * @param url
-	 * @param param
+	 * @param paramMap
 	 * @return
 	 */
-	public static String ajaxPost(String url, Map<String, String> bodyMap) {
-		return ajaxPost(url, bodyMap, HttpHeaders.CHARSET_UTF_8);
+	public static String ajaxPost(String url, Map<String, String> paramMap) {
+		return ajaxPost(url, paramMap, HttpHeaders.CHARSET_UTF_8);
 	}
 
 	/**
 	 * 	HTTP / HTTPS doPost 请求，增加异步请求头参数，传递map格式参数，
 	 * 	可指定编码集，若未指定编码集默认为：UTF-8
 	 * @param url
-	 * @param param
+	 * @param paramMap
 	 * @param charset
 	 * @return
 	 */
-	public static String ajaxPost(String url, Map<String, String> bodyMap, String charset) {
+	public static String ajaxPost(String url, Map<String, String> paramMap, String charset) {
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setHeader(HttpHeaders.X_REQUESTED_WITH, HttpHeaders.XML_HTTP_REQUEST);
 		String result = null;
 		try {
-			if (bodyMap != null){
+			if (paramMap != null){
 				checkCharset(charset);
 				List<NameValuePair> nvps = Arrays.asList();
-				for (Map.Entry<String, String> entry : bodyMap.entrySet()) {
+				for (Map.Entry<String, String> entry : paramMap.entrySet()) {
 					nvps.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
 				}
 				UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nvps, charset);
@@ -332,9 +332,8 @@ public class HttpClientUtils {
 		}
 	}
 
-
-	public static void main(String[] args) {
-		System.out.println(doPost("https://admin2.ccsdapp.com/app/login/userinfo","{\"user_code\": \"1037619709159591936\"}"));
-	}
+//	public static void main(String[] args) {
+//		System.out.println(doPost("https://admin2.ccsdapp.com/app/login/userinfo","{\"user_code\": \"1037619709159591936\"}"));
+//	}
 
 }

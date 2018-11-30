@@ -233,4 +233,8 @@ public final class HttpHeaders {
   public static final String HTTPS = "https";
 
   public static final String XML_HTTP_REQUEST = "XMLHttpRequest";
+
+  public static final String METHOD_POST = "post";
+
+  public static final String METHOD_GET = "get";
 }
