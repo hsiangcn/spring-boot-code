@@ -9,16 +9,16 @@ package com.free.code.entity;
  */
 public class ResultEntity<T> {
 
-    private String success;
+    private String code;
     private String message;
     private T data;
 
-    public String getSuccess() {
-        return success;
+    public String getCode() {
+        return code;
     }
 
-    public void setSuccess(String success) {
-        this.success = success;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMessage() {
